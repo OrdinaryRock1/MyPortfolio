@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alex Morgan - Softwarový inženýr</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #050505;
+            --surface-color: rgba(255, 255, 255, 0.03);
+            --surface-hover: rgba(255, 255, 255, 0.08);
+            --text-main: #ffffff;
+            --text-muted: #a1a1aa;
+            --text-light: #52525b;
+            --accent: #00ffa3;
+            /* Vibrant neon green */
+            --accent-glow: rgba(0, 255, 163, 0.2);
+            --border-color: rgba(255, 255, 255, 0.1);
+            --font-main: 'Inter', sans-serif;
+            --max-width: 1650px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        /* Ambient Background Glows */
+        .ambient-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            background:
+                radial-gradient(circle at 15% 30%, var(--accent-glow), transparent 25%),
+                radial-gradient(circle at 85% 70%, rgba(56, 189, 248, 0.1), transparent 25%);
+            pointer-events: none;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--accent);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 5%;
+        }
+
+        /* --- Scroll Animation Classes --- */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Typography & Utilities --- */
+        .dot {
+            color: var(--accent);
+            text-shadow: 0 0 10px var(--accent-glow);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            letter-spacing: -0.02em;
+        }
+
+        .eyebrow {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border-color), transparent);
+            margin: 6rem 0;
+        }
+
+        /* --- Header / Navigation --- */
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1.2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(12px);
+            background: rgba(5, 5, 5, 0.6);
+
+            transition: background 0.3s ease;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo-placeholder {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1rem;
+            background: rgba(0, 255, 163, 0.08);
+            box-shadow: 0 0 12px rgba(0, 255, 163, 0.15);
+        }
+
+        .logo-placeholder img {
+            width: 36px;
+            height: 36px;
+        }
+
+        .site-name {
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            color: var(--text-main);
+        }
+
+        .site-name .dot {
+            color: var(--accent);
+        }
+
+        .main-nav ul {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .main-nav a {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .main-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .main-nav a:hover {
+            color: var(--accent);
+        }
+
+        .main-nav a:hover::after {
+            width: 100%;
+        }
+
+        /* --- Hero Section --- */
+        #hero {
+            padding-top: 10rem;
+            padding-bottom: 6rem;
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr auto;
+            gap: 4rem;
+            align-items: center;
+            width: 100%;
+        }
+
+        .hero-content {
+            grid-column: 1;
+            grid-row: 1;
+        }
+
+        .hero-visual {
+            grid-column: 2;
+            grid-row: 1 / 3;
+        }
+
+        .hero-actions {
+            grid-column: 1;
+            grid-row: 2;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(3.5rem, 8vw, 7rem);
+            font-weight: 700;
+            line-height: 1.05;
+            letter-spacing: -0.04em;
+            margin-bottom: 2rem;
+            background: linear-gradient(180deg, #ffffff 0%, #a1a1aa 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            padding-bottom: 0.1em;
+        }
+
+        .hero-content p {
+            font-size: 1.125rem;
+            color: var(--text-muted);
+            max-width: 450px;
+            margin-bottom: 3rem;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .btn {
+            padding: 0.8rem 2rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 4px;
+        }
+
+        .btn-primary {
+            background-color: var(--text-main);
+            color: var(--bg-color);
+            border: 1px solid var(--text-main);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent);
+            color: var(--bg-color);
+            border-color: var(--accent);
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--text-main);
+            background-color: var(--surface-color);
+        }
+
+        /* --- Interactive Glass Cube --- */
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 400px;
+            perspective: 1000px;
+            position: relative;
+        }
+
+        .cursor-label {
+            position: fixed;
+            pointer-events: none;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--text-muted);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            transform: translate(12px, 12px);
+            z-index: 100;
+        }
+
+        .cursor-label.visible {
+            opacity: 1;
+        }
+
+        .cube {
+            width: 200px;
+            height: 200px;
+            position: relative;
+            transform-style: preserve-3d;
+            cursor: grab;
+            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .cube.dragging {
+            cursor: grabbing;
+            transition: none;
+        }
+
+        .face {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border: 1px solid rgba(0, 255, 163, 0.4);
+            background: rgba(5, 5, 5, 0.6);
+            backdrop-filter: blur(4px);
+            box-shadow: inset 0 0 30px rgba(0, 255, 163, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-main);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            text-shadow: 0 0 8px rgba(0, 255, 163, 0.6);
+        }
+
+        .front {
+            transform: translateZ(100px);
+        }
+
+        .back {
+            transform: rotateY(180deg) translateZ(100px);
+        }
+
+        .right {
+            transform: rotateY(90deg) translateZ(100px);
+        }
+
+        .left {
+            transform: rotateY(-90deg) translateZ(100px);
+        }
+
+        .top {
+            transform: rotateX(90deg) translateZ(100px);
+        }
+
+        .bottom {
+            transform: rotateX(-90deg) translateZ(100px);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--text-muted);
+            text-align: center;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateY(0) translateX(-50%);
+            }
+
+            40% {
+                transform: translateY(-10px) translateX(-50%);
+            }
+
+            60% {
+                transform: translateY(-5px) translateX(-50%);
+            }
+        }
+
+        /* --- Layout Grids --- */
+        .section-grid {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 4rem;
+            margin-bottom: 8rem;
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            padding-top: 0.5rem;
+        }
+
+        /* --- About Section --- */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 4rem;
+        }
+
+        .about-text p {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        .tech-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .tech-list li {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+        }
+
+        .tech-list li::before {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background-color: var(--accent);
+            border-radius: 50%;
+            margin-right: 12px;
+            box-shadow: 0 0 8px var(--accent);
+        }
+
+        /* --- Hoverable Cards (Projects & Experience) --- */
+        .card-link {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+            margin-bottom: 1rem;
+        }
+
+        .card-link:hover {
+            color: inherit;
+        }
+
+        .card-item {
+            display: grid;
+            gap: 2rem;
+            padding: 2.5rem;
+            border-radius: 12px;
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            transition: all 0.4s ease;
+        }
+
+        .card-item:hover {
+            transform: translateY(-5px);
+            background: var(--surface-hover);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .project-item {
+            grid-template-columns: 50px 1fr 1.5fr;
+        }
+
+        .project-num {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            font-family: monospace;
+        }
+
+        .project-info h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .project-info h3 span {
+            font-size: 1rem;
+            color: var(--text-muted);
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .card-item:hover .project-info h3 span {
+            transform: translate(4px, -4px);
+            color: var(--accent);
+        }
+
+        .project-role {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .project-desc {
+            color: var(--text-muted);
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .project-tags span {
+            font-size: 0.7rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* --- Experience Section --- */
+        .experience-item {
+            grid-template-columns: 150px 1fr 1.5fr;
+        }
+
+        .exp-year {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            font-family: monospace;
+        }
+
+        .exp-role h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .exp-company {
+            font-size: 0.8rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            text-shadow: 0 0 10px rgba(0, 255, 163, 0.2);
+        }
+
+        .exp-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* --- Contact Section --- */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-info-block {
+            margin-bottom: 2rem;
+        }
+
+        .contact-info-block h4 {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1rem 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-main);
+            font-family: var(--font-main);
+            font-size: 0.95rem;
+            outline: none;
+            resize: none;
+            transition: all 0.3s ease;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 15px var(--accent-glow);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        /* --- Footer --- */
+        footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 0;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.8rem;
+            color: var(--text-light);
+            margin-top: 4rem;
+            padding-bottom: 4rem;
+        }
+
+        /* =========================================
+           RESPONSIVE DESIGN (Media Queries)
+           ========================================= */
+
+        @media (max-width: 1024px) {
+            .main-nav ul {
+                gap: 1.2rem;
+            }
+
+            .hero-grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto;
+                gap: 2rem;
+                text-align: center;
+            }
+
+            .hero-content {
+                grid-column: auto;
+                grid-row: auto;
+                order: 1;
+            }
+
+            .hero-visual {
+                grid-column: auto;
+                grid-row: auto;
+                order: 2;
+            }
+
+            .hero-actions {
+                grid-column: auto;
+                grid-row: auto;
+                order: 3;
+            }
+
+            .hero-content p {
+                margin: 0 auto 1rem auto;
+            }
+
+            .hero-actions {
+                justify-content: center;
+            }
+
+            .about-content,
+            .contact-grid {
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-nav {
+                display: none;
+            }
+
+            #hero {
+                padding-top: 6rem;
+                min-height: auto;
+            }
+
+            .section-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                margin-bottom: 5rem;
+            }
+
+            .section-label {
+                padding-top: 0;
+                border-bottom: 1px solid var(--border-color);
+                padding-bottom: 0.5rem;
+                margin-bottom: 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .about-content,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-visual {
+                height: 300px;
+                transform: scale(0.8);
+            }
+
+            .scroll-indicator {
+                display: none;
+            }
+
+            .card-item.project-item,
+            .card-item.experience-item {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+                padding: 1.5rem;
+            }
+
+            .project-num {
+                display: none;
+            }
+
+            .exp-year {
+                margin-bottom: -0.5rem;
+                color: var(--accent);
+            }
+
+            footer {
+                flex-direction: column;
+                gap: 1.5rem;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="ambient-bg"></div>
+
+    <header class="site-header">
+        <div class="header-left">
+            <div class="logo-placeholder" id="site-logo"><img src="logo.png"></div>
+            <span class="site-name">Hai Hoang<span class="dot">.</span></span>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="#hero">Domů</a></li>
+                <li><a href="#about">O mně</a></li>
+                <li><a href="#projects">Projekty</a></li>
+                <li><a href="#experience">Zkušenosti</a></li>
+                <li><a href="#contact">Kontakt</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <section id="hero" class="fade-in">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <span class="eyebrow">STUDENT INFORMAČNÍ TECHNOLOGIE</span>
+                    <h1>Hai<br>Hoang<span class="dot">.</span></h1>
+                    <p>Tvořím čisté a výkonné webové zážitky se zaměřením na promyšlený design a precizní inženýrství.
+                    </p>
+                </div>
+
+                <div class="hero-visual" id="cube-container">
+                    <div class="cube" id="cube">
+                        <div class="face front"></div>
+                        <div class="face back"></div>
+                        <div class="face right"></div>
+                        <div class="face left"></div>
+                        <div class="face top"></div>
+                        <div class="face bottom"></div>
+                    </div>
+                </div>
+
+                <div class="hero-actions">
+                    <button class="btn btn-primary">PROJEKTY</button>
+                    <button class="btn btn-secondary">KONTAKT</button>
+                </div>
+            </div>
+
+            <div class="scroll-indicator">
+                SCROLLUJ<br>↓
+            </div>
+        </section>
+
+        <section id="about" class="section-grid fade-in">
+            <div class="section-label">O MNĚ</div>
+            <div class="section-content">
+                <h2 class="section-title">Tvořím digitální<br>zážitky s<br>precizností<span class="dot">.</span>
+                </h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>Jsem full-stack vývojář s více než 5 lety zkušeností v tvorbě webových aplikací, které
+                            kombinují čistou estetiku s robustním inženýrstvím. Věřím, že skvělý software začíná jasným
+                            myšlením a pozorností k detailům.</p>
+                        <p>Momentálně se zaměřuji na budování škálovatelných frontendových architektur a zkoumání
+                            průniku designových systémů a vývojářského zážitku. Když zrovna neprogramuji, najdete mě jak
+                            čtu o typografii nebo objevuji nové kavárny.</p>
+                    </div>
+                    <div class="about-tech">
+                        <span class="eyebrow">TECHNOLOGIE</span>
+                        <ul class="tech-list">
+                            <li>C#</li>
+                            <li>Java</li>
+                            <li>Javascript</li>
+                            <li>MySQL</li>
+                            <li>SQL Server</li>
+                            <li>HTML & CSS</li>
+                            <li>Python</li>
+                            <li>Linux</li>
+                            <li>Blender</li>
+                            <li>LIQUID</li>
+                            <li>Git</li>
+                            <li>Unity</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="section-grid fade-in">
+            <div class="section-label">PROJEKTY</div>
+            <div class="section-content">
+                <h2 class="section-title">Vybrané<br>práce<span class="dot">.</span></h2>
+
+                <div class="project-list">
+                    <a class="card-link" href="https://euphonious-flan-942081.netlify.app/" target="_blank"
+                        rel="noopener noreferrer">
+                        <article class="card-item project-item">
+                            <div class="project-num">01</div>
+                            <div class="project-info">
+                                <h3>Recepty <span>↗</span></h3>
+                                <span class="project-role">FULL-STACK — 2025</span>
+                            </div>
+                            <div class="project-details">
+                                <p class="project-desc">Responzivní full-stack webovou aplikaci pro ukládání a
+                                    vyhledávání
+                                    receptů, postavenou na čistém HTML/CSS/JS frontendu a C# .NET backendu, který
+                                    komunikuje
+                                    s cloudovou MySQL databází.</p>
+                                <div class="project-tags">
+                                    <span>HTML</span><span>CSS</span><span>JAVASCRIPT</span><span>C#</span><span>.NET</span><span>MYSQL</span>
+                                </div>
+                            </div>
+                        </article>
+                    </a>
+
+                    <a class="card-link" href="#" target="_blank" rel="noopener noreferrer">
+                        <article class="card-item project-item">
+                            <div class="project-num">02</div>
+                            <div class="project-info">
+                                <h3>Pulse <span>↗</span></h3>
+                                <span class="project-role">FRONTEND — 2024</span>
+                            </div>
+                            <div class="project-details">
+                                <p class="project-desc">Analytický dashboard, který transformuje složitá data do
+                                    minimálních, akcionovatelných vizualizací se streamováním v reálném čase.</p>
+                                <div class="project-tags">
+                                    <span>NEXT.JS</span><span>D3.JS</span><span>NODE.JS</span><span>REDIS</span>
+                                </div>
+                            </div>
+                        </article>
+                    </a>
+
+                    <a class="card-link" href="#" target="_blank" rel="noopener noreferrer">
+                        <article class="card-item project-item">
+                            <div class="project-num">03</div>
+                            <div class="project-info">
+                                <h3>Terraform CLI <span>↗</span></h3>
+                                <span class="project-role">BACKEND — 2024</span>
+                            </div>
+                            <div class="project-details">
+                                <p class="project-desc">CLI nástroj pro vývojáře určený k scaffoldingu, nasazování a
+                                    správě
+                                    mikroservis s vestavěnou observabilitou.</p>
+                                <div class="project-tags">
+                                    <span>PYTHON</span><span>DOCKER</span><span>AWS</span><span>GRPC</span>
+                                </div>
+                            </div>
+                        </article>
+                    </a>
+
+                    <a class="card-link" href="#" target="_blank" rel="noopener noreferrer">
+                        <article class="card-item project-item">
+                            <div class="project-num">04</div>
+                            <div class="project-info">
+                                <h3>Aether <span>↗</span></h3>
+                                <span class="project-role">FULL-STACK — 2023</span>
+                            </div>
+                            <div class="project-details">
+                                <p class="project-desc">AI platforma pro správu obsahu s automatickým tagováním, chytrým
+                                    vyhledáváním a personalizovaným doporučovacím systémem.</p>
+                                <div class="project-tags">
+                                    <span>PYTHON</span><span>REACT</span><span>OPENAI</span><span>MONGODB</span>
+                                </div>
+                            </div>
+                        </article>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="section-grid fade-in">
+            <div class="section-label">ZKUŠENOSTI</div>
+            <div class="section-content">
+                <h2 class="section-title">Kde jsem<br>pracoval<span class="dot">.</span></h2>
+
+                <div class="experience-list">
+                    <article class="card-item experience-item">
+                        <div class="exp-year">2024 — Současnost</div>
+                        <div class="exp-role">
+                            <h4>Senior Frontend Inženýr</h4>
+                            <span class="exp-company">LINEAR</span>
+                        </div>
+                        <div class="exp-desc">Vedu tým design systému, vyvíjím škálovatelné knihovny komponent a
+                            zlepšuji vývojářské procesy v celé organizaci.</div>
+                    </article>
+
+                    <article class="card-item experience-item">
+                        <div class="exp-year">2022 — 2024</div>
+                        <div class="exp-role">
+                            <h4>Full-Stack Vývojář</h4>
+                            <span class="exp-company">VERCEL</span>
+                        </div>
+                        <div class="exp-desc">Vytvářel a udržoval interní nástroje a zákaznické dashboardy.
+                            Optimalizoval build pipeline a snížil čas nasazení o 40%.</div>
+                    </article>
+
+                    <article class="card-item experience-item">
+                        <div class="exp-year">2021 — 2022</div>
+                        <div class="exp-role">
+                            <h4>Frontend Vývojář</h4>
+                            <span class="exp-company">STRIPE</span>
+                        </div>
+                        <div class="exp-desc">Vyvíjel interaktivní platební komponenty a checkout toky používané miliony
+                            obchodníků po celém světě.</div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <section id="contact" class="section-grid fade-in">
+            <div class="section-label">KONTAKT</div>
+            <div class="section-content">
+                <h2 class="section-title">Pojďme<br>spolupracovat<span class="dot">.</span></h2>
+
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <div class="contact-info-block">
+                            <h4>E-MAIL</h4>
+                            <p><a href="#">hello@alexmorgan.dev ↗</a></p>
+                        </div>
+                        <div class="contact-info-block">
+                            <h4>LOKACE</h4>
+                            <p>San Francisco, CA</p>
+                        </div>
+                        <div class="contact-info-block">
+                            <h4>DOSTUPNOST</h4>
+                            <p><span class="dot">•</span> Otevřený novým příležitostem</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-form">
+                        <form>
+                            <input type="text" placeholder="JMÉNO" required>
+                            <input type="email" placeholder="E-MAIL" required>
+                            <textarea placeholder="ZPRÁVA" rows="4" required></textarea>
+                            <button type="submit" class="btn btn-primary">ODESLAT ZPRÁVU ↗</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="fade-in">
+            <div class="copyright">
+                <strong style="color: #fff;">Alex Morgan.</strong><br>
+                © 2026 — Všechna práva vyhrazena
+            </div>
+            <div class="footer-center" style="letter-spacing: 0.1em; text-transform: uppercase; font-size: 0.7rem;">
+                NAVRŽENO S PRECIZNOSTÍ
+            </div>
+            <div class="social-links">
+                <a href="#">GH</a> / <a href="#">IN</a> / <a href="#">EM</a>
+            </div>
+        </footer>
+    </div>
+
+    <span class="cursor-label" id="cursor-label">chytni mě</span>
+
+    <script>
+        // Interactive 3D Cube Logic — Drag to move + rotate
+        const cube = document.getElementById('cube');
+        const container = document.getElementById('cube-container');
+
+        let rotateX = -20;
+        let rotateY = -45;
+        let isDragging = false;
+        let prevX = 0;
+        let prevY = 0;
+        let velocityX = 0;
+        let velocityY = 0;
+        let offsetX = 0;
+        let offsetY = 0;
+        let dragStartX = 0;
+        let dragStartY = 0;
+
+        function updateCube() {
+            cube.style.transform = `translate(${offsetX}px, ${offsetY}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        }
+
+        // Auto-rotate with inertia when not dragging
+        function animate() {
+            if (!isDragging) {
+                // Apply inertia (decaying velocity)
+                velocityX *= 0.95;
+                velocityY *= 0.95;
+
+                // Add slow idle spin when velocity is near zero
+                if (Math.abs(velocityX) < 0.05 && Math.abs(velocityY) < 0.05) {
+                    velocityX = 0;
+                    velocityY = 0.3;
+                }
+
+                rotateX += velocityX;
+                rotateY += velocityY;
+                updateCube();
+            }
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+
+        // --- Cursor-following label ---
+        const cursorLabel = document.getElementById('cursor-label');
+        let isOverContainer = false;
+
+        container.addEventListener('mouseenter', () => {
+            isOverContainer = true;
+            if (!isDragging) cursorLabel.classList.add('visible');
+        });
+
+        container.addEventListener('mouseleave', () => {
+            if (!isDragging) {
+                isOverContainer = false;
+                cursorLabel.classList.remove('visible');
+            }
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            cursorLabel.style.left = e.clientX + 'px';
+            cursorLabel.style.top = e.clientY + 'px';
+        });
+
+        // --- Mouse drag ---
+        container.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            cube.classList.add('dragging');
+            cursorLabel.classList.remove('visible');
+            prevX = e.clientX;
+            prevY = e.clientY;
+            dragStartX = e.clientX;
+            dragStartY = e.clientY;
+            e.preventDefault();
+        });
+
+        window.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            const dx = e.clientX - prevX;
+            const dy = e.clientY - prevY;
+
+            // Move the cube position
+            offsetX = e.clientX - dragStartX;
+            offsetY = e.clientY - dragStartY;
+
+            // Rotate based on movement
+            rotateY += dx * 0.5;
+            rotateX -= dy * 0.5;
+            velocityX = -dy * 0.5;
+            velocityY = dx * 0.5;
+            prevX = e.clientX;
+            prevY = e.clientY;
+            updateCube();
+        });
+
+        window.addEventListener('mouseup', () => {
+            if (!isDragging) return;
+            isDragging = false;
+            cube.classList.remove('dragging');
+
+            // Snap back to original position with transition
+            offsetX = 0;
+            offsetY = 0;
+            updateCube();
+        });
+
+        // --- Touch drag ---
+        container.addEventListener('touchstart', (e) => {
+            isDragging = true;
+            cube.classList.add('dragging');
+            prevX = e.touches[0].clientX;
+            prevY = e.touches[0].clientY;
+        }, { passive: true });
+
+        window.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            const dx = e.touches[0].clientX - prevX;
+            const dy = e.touches[0].clientY - prevY;
+            rotateY += dx * 0.5;
+            rotateX -= dy * 0.5;
+            velocityX = -dy * 0.5;
+            velocityY = dx * 0.5;
+            prevX = e.touches[0].clientX;
+            prevY = e.touches[0].clientY;
+            updateCube();
+        }, { passive: true });
+
+        window.addEventListener('touchend', () => {
+            isDragging = false;
+            cube.classList.remove('dragging');
+        });
+
+        // Scroll Animation Observer (Fades sections in as you scroll)
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target); // Stop observing once visible
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Ensure hero is visible immediately
+        setTimeout(() => {
+            document.querySelector('#hero').classList.add('visible');
+        }, 100);
+    </script>
+</body>
+
+</html>
