@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alex Morgan - Softwarový inženýr</title>
+    <title>Hai Hoang</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -15,7 +15,6 @@
             --text-muted: #a1a1aa;
             --text-light: #52525b;
             --accent: #00ffa3;
-            /* Vibrant neon green */
             --accent-glow: rgba(0, 255, 163, 0.2);
             --border-color: rgba(255, 255, 255, 0.1);
             --font-main: 'Inter', sans-serif;
@@ -37,7 +36,6 @@
             overflow-x: hidden;
         }
 
-        /* Ambient Background Glows */
         .ambient-bg {
             position: fixed;
             top: 0;
@@ -71,7 +69,6 @@
             padding: 0 5%;
         }
 
-        /* --- Scroll Animation Classes --- */
         .fade-in {
             opacity: 0;
             transform: translateY(30px);
@@ -83,7 +80,6 @@
             transform: translateY(0);
         }
 
-        /* --- Typography & Utilities --- */
         .dot {
             color: var(--accent);
             text-shadow: 0 0 10px var(--accent-glow);
@@ -112,7 +108,6 @@
             margin: 6rem 0;
         }
 
-        /* --- Header / Navigation --- */
         .site-header {
             position: fixed;
             top: 0;
@@ -198,7 +193,6 @@
             width: 100%;
         }
 
-        /* --- Hero Section --- */
         #hero {
             padding-top: 10rem;
             padding-bottom: 6rem;
@@ -296,7 +290,6 @@
             background-color: var(--surface-color);
         }
 
-        /* --- Interactive Glass Cube --- */
         .hero-visual {
             display: flex;
             justify-content: center;
@@ -412,7 +405,6 @@
             }
         }
 
-        /* --- Layout Grids --- */
         .section-grid {
             display: grid;
             grid-template-columns: 200px 1fr;
@@ -428,7 +420,7 @@
             padding-top: 0.5rem;
         }
 
-        /* --- About Section --- */
+
         .about-content {
             display: grid;
             grid-template-columns: 1.2fr 1fr;
@@ -465,7 +457,6 @@
             box-shadow: 0 0 8px var(--accent);
         }
 
-        /* --- Hoverable Cards (Projects & Experience) --- */
         .card-link {
             display: block;
             text-decoration: none;
@@ -554,7 +545,6 @@
             letter-spacing: 0.05em;
         }
 
-        /* --- Experience Section --- */
         .experience-item {
             grid-template-columns: 150px 1fr 1.5fr;
         }
@@ -583,7 +573,7 @@
             font-size: 0.95rem;
         }
 
-        /* --- Contact Section --- */
+
         .contact-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -625,7 +615,6 @@
             background: rgba(255, 255, 255, 0.05);
         }
 
-        /* --- Footer --- */
         footer {
             display: flex;
             justify-content: space-between;
@@ -638,9 +627,7 @@
             padding-bottom: 4rem;
         }
 
-        /* =========================================
-           RESPONSIVE DESIGN (Media Queries)
-           ========================================= */
+
 
         @media (max-width: 1024px) {
             .main-nav ul {
@@ -757,17 +744,16 @@
     <div class="ambient-bg"></div>
 
     <header class="site-header">
-        <div class="header-left">
+        <a href="" class="header-left" onclick="location.reload(); return false;"
+            style="text-decoration:none;color:inherit;">
             <div class="logo-placeholder" id="site-logo"><img src="logo.png"></div>
             <span class="site-name">Hai Hoang<span class="dot">.</span></span>
-        </div>
+        </a>
         <nav class="main-nav">
             <ul>
                 <li><a href="#hero">Domů</a></li>
                 <li><a href="#about">O mně</a></li>
                 <li><a href="#projects">Projekty</a></li>
-                <li><a href="#experience">Zkušenosti</a></li>
-                <li><a href="#contact">Kontakt</a></li>
             </ul>
         </nav>
     </header>
@@ -778,7 +764,7 @@
                 <div class="hero-content">
                     <span class="eyebrow">STUDENT INFORMAČNÍ TECHNOLOGIE</span>
                     <h1>Hai<br>Hoang<span class="dot">.</span></h1>
-                    <p>Tvořím čisté a výkonné webové zážitky se zaměřením na promyšlený design a precizní inženýrství.
+                    <p>Učím se tvořit moderní webové aplikace, které spojují jednoduchý design a praktickou funkčnost.
                     </p>
                 </div>
 
@@ -794,8 +780,7 @@
                 </div>
 
                 <div class="hero-actions">
-                    <button class="btn btn-primary">PROJEKTY</button>
-                    <button class="btn btn-secondary">KONTAKT</button>
+                    <a href="#projects" class="btn btn-primary" style="text-decoration:none;">PROJEKTY</a>
                 </div>
             </div>
 
@@ -811,12 +796,17 @@
                 </h2>
                 <div class="about-content">
                     <div class="about-text">
-                        <p>Jsem full-stack vývojář s více než 5 lety zkušeností v tvorbě webových aplikací, které
-                            kombinují čistou estetiku s robustním inženýrstvím. Věřím, že skvělý software začíná jasným
-                            myšlením a pozorností k detailům.</p>
-                        <p>Momentálně se zaměřuji na budování škálovatelných frontendových architektur a zkoumání
-                            průniku designových systémů a vývojářského zážitku. Když zrovna neprogramuji, najdete mě jak
-                            čtu o typografii nebo objevuji nové kavárny.</p>
+                        <p>Jsem student informačních technologií se zaměřením na tvorbu moderních webových aplikací a
+                            neustálé rozšiřování svých dovedností v oblasti vývoje i designu. Baví mě hledat efektivní
+                            řešení, učit se nové technologie a proměňovat nápady v funkční a přehledné digitální
+                            produkty.</p>
+
+                        <p>Momentálně se soustředím na zdokonalování ve frontendovém i backendovém vývoji, budování
+                            pevných základů softwarového inženýrství a objevování možností, které přináší moderní AI
+                            nástroje.</p>
+
+                        <p> Když zrovna nesedím u kódu, věnuji se boulderingu a čtení web novel, které mi pomáhají
+                            rozvíjet kreativitu i představivost.</p>
                     </div>
                     <div class="about-tech">
                         <span class="eyebrow">TECHNOLOGIE</span>
@@ -851,14 +841,12 @@
                             <div class="project-num">01</div>
                             <div class="project-info">
                                 <h3>Recepty <span>↗</span></h3>
-                                <span class="project-role">FULL-STACK — 2025</span>
+                                <span class="project-role">FULL-STACK</span>
                             </div>
                             <div class="project-details">
-                                <p class="project-desc">Responzivní full-stack webovou aplikaci pro ukládání a
-                                    vyhledávání
-                                    receptů, postavenou na čistém HTML/CSS/JS frontendu a C# .NET backendu, který
-                                    komunikuje
-                                    s cloudovou MySQL databází.</p>
+                                <p class="project-desc">Responzivní full-stack webovou aplikaci pro ukládání a receptů,
+                                    postavenou na čistém HTML/CSS/JS frontendu a C# .NET backendu, který komunikuje s
+                                    cloudovou MySQL databází.</p>
                                 <div class="project-tags">
                                     <span>HTML</span><span>CSS</span><span>JAVASCRIPT</span><span>C#</span><span>.NET</span><span>MYSQL</span>
                                 </div>
@@ -866,53 +854,39 @@
                         </article>
                     </a>
 
-                    <a class="card-link" href="#" target="_blank" rel="noopener noreferrer">
+                    <a class="card-link" href="https://ordinaryrock1.github.io/Prijimacky/" target="_blank"
+                        rel="noopener noreferrer">
                         <article class="card-item project-item">
                             <div class="project-num">02</div>
                             <div class="project-info">
-                                <h3>Pulse <span>↗</span></h3>
-                                <span class="project-role">FRONTEND — 2024</span>
+                                <h3>TestniTo <span>↗</span></h3>
+                                <span class="project-role">FRONTEND</span>
                             </div>
                             <div class="project-details">
-                                <p class="project-desc">Analytický dashboard, který transformuje složitá data do
-                                    minimálních, akcionovatelných vizualizací se streamováním v reálném čase.</p>
+                                <p class="project-desc">Responzivní webovou aplikaci pro interaktivní simulaci a
+                                    procvičování přijímacích zkoušek na střední školy, postavenou na čistém HTML/CSS/JS
+                                    frontendu, který napřímo komunikuje s cloudovou databází Supabase.</p>
                                 <div class="project-tags">
-                                    <span>NEXT.JS</span><span>D3.JS</span><span>NODE.JS</span><span>REDIS</span>
+                                    <span>HTML</span><span>CSS</span><span>JAVASCRIPT</span><span>SUPABASE</span>
                                 </div>
                             </div>
                         </article>
                     </a>
 
-                    <a class="card-link" href="#" target="_blank" rel="noopener noreferrer">
+                    <a class="card-link" href="https://hilarious-frangollo-2f321b.netlify.app/" target="_blank"
+                        rel="noopener noreferrer">
                         <article class="card-item project-item">
                             <div class="project-num">03</div>
                             <div class="project-info">
-                                <h3>Terraform CLI <span>↗</span></h3>
-                                <span class="project-role">BACKEND — 2024</span>
+                                <h3>Simple game<span>↗</span></h3>
+                                <span class="project-role">Unity hra</span>
                             </div>
                             <div class="project-details">
-                                <p class="project-desc">CLI nástroj pro vývojáře určený k scaffoldingu, nasazování a
-                                    správě
-                                    mikroservis s vestavěnou observabilitou.</p>
+                                <p class="project-desc">Jednoduchá 3D hra vytvořená v enginu Unity. Projekt obsahuje
+                                    quest systém (sběr předmětů, lov zvířat, souboje s bossy), uživatelské rozhraní, a
+                                    vlastní logiku pro interakci s NPC a správu postupu hrou.</p>
                                 <div class="project-tags">
-                                    <span>PYTHON</span><span>DOCKER</span><span>AWS</span><span>GRPC</span>
-                                </div>
-                            </div>
-                        </article>
-                    </a>
-
-                    <a class="card-link" href="#" target="_blank" rel="noopener noreferrer">
-                        <article class="card-item project-item">
-                            <div class="project-num">04</div>
-                            <div class="project-info">
-                                <h3>Aether <span>↗</span></h3>
-                                <span class="project-role">FULL-STACK — 2023</span>
-                            </div>
-                            <div class="project-details">
-                                <p class="project-desc">AI platforma pro správu obsahu s automatickým tagováním, chytrým
-                                    vyhledáváním a personalizovaným doporučovacím systémem.</p>
-                                <div class="project-tags">
-                                    <span>PYTHON</span><span>REACT</span><span>OPENAI</span><span>MONGODB</span>
+                                    <span>UNITY</span><span>C#</span>
                                 </div>
                             </div>
                         </article>
@@ -921,90 +895,18 @@
             </div>
         </section>
 
-        <section id="experience" class="section-grid fade-in">
-            <div class="section-label">ZKUŠENOSTI</div>
-            <div class="section-content">
-                <h2 class="section-title">Kde jsem<br>pracoval<span class="dot">.</span></h2>
 
-                <div class="experience-list">
-                    <article class="card-item experience-item">
-                        <div class="exp-year">2024 — Současnost</div>
-                        <div class="exp-role">
-                            <h4>Senior Frontend Inženýr</h4>
-                            <span class="exp-company">LINEAR</span>
-                        </div>
-                        <div class="exp-desc">Vedu tým design systému, vyvíjím škálovatelné knihovny komponent a
-                            zlepšuji vývojářské procesy v celé organizaci.</div>
-                    </article>
-
-                    <article class="card-item experience-item">
-                        <div class="exp-year">2022 — 2024</div>
-                        <div class="exp-role">
-                            <h4>Full-Stack Vývojář</h4>
-                            <span class="exp-company">VERCEL</span>
-                        </div>
-                        <div class="exp-desc">Vytvářel a udržoval interní nástroje a zákaznické dashboardy.
-                            Optimalizoval build pipeline a snížil čas nasazení o 40%.</div>
-                    </article>
-
-                    <article class="card-item experience-item">
-                        <div class="exp-year">2021 — 2022</div>
-                        <div class="exp-role">
-                            <h4>Frontend Vývojář</h4>
-                            <span class="exp-company">STRIPE</span>
-                        </div>
-                        <div class="exp-desc">Vyvíjel interaktivní platební komponenty a checkout toky používané miliony
-                            obchodníků po celém světě.</div>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <div class="divider"></div>
-
-        <section id="contact" class="section-grid fade-in">
-            <div class="section-label">KONTAKT</div>
-            <div class="section-content">
-                <h2 class="section-title">Pojďme<br>spolupracovat<span class="dot">.</span></h2>
-
-                <div class="contact-grid">
-                    <div class="contact-info">
-                        <div class="contact-info-block">
-                            <h4>E-MAIL</h4>
-                            <p><a href="#">hello@alexmorgan.dev ↗</a></p>
-                        </div>
-                        <div class="contact-info-block">
-                            <h4>LOKACE</h4>
-                            <p>San Francisco, CA</p>
-                        </div>
-                        <div class="contact-info-block">
-                            <h4>DOSTUPNOST</h4>
-                            <p><span class="dot">•</span> Otevřený novým příležitostem</p>
-                        </div>
-                    </div>
-
-                    <div class="contact-form">
-                        <form>
-                            <input type="text" placeholder="JMÉNO" required>
-                            <input type="email" placeholder="E-MAIL" required>
-                            <textarea placeholder="ZPRÁVA" rows="4" required></textarea>
-                            <button type="submit" class="btn btn-primary">ODESLAT ZPRÁVU ↗</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
 
         <footer class="fade-in">
             <div class="copyright">
-                <strong style="color: #fff;">Alex Morgan.</strong><br>
+                <strong style="color: #fff;">Hai Hoang.</strong><br>
                 © 2026 — Všechna práva vyhrazena
             </div>
             <div class="footer-center" style="letter-spacing: 0.1em; text-transform: uppercase; font-size: 0.7rem;">
                 NAVRŽENO S PRECIZNOSTÍ
             </div>
             <div class="social-links">
-                <a href="#">GH</a> / <a href="#">IN</a> / <a href="#">EM</a>
+                <a href="https://github.com/OrdinaryRock1">GH</a>
             </div>
         </footer>
     </div>
@@ -1012,7 +914,6 @@
     <span class="cursor-label" id="cursor-label">chytni mě</span>
 
     <script>
-        // Interactive 3D Cube Logic — Drag to move + rotate
         const cube = document.getElementById('cube');
         const container = document.getElementById('cube-container');
 
@@ -1032,14 +933,11 @@
             cube.style.transform = `translate(${offsetX}px, ${offsetY}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
         }
 
-        // Auto-rotate with inertia when not dragging
         function animate() {
             if (!isDragging) {
-                // Apply inertia (decaying velocity)
                 velocityX *= 0.95;
                 velocityY *= 0.95;
 
-                // Add slow idle spin when velocity is near zero
                 if (Math.abs(velocityX) < 0.05 && Math.abs(velocityY) < 0.05) {
                     velocityX = 0;
                     velocityY = 0.3;
@@ -1054,7 +952,6 @@
 
         animate();
 
-        // --- Cursor-following label ---
         const cursorLabel = document.getElementById('cursor-label');
         let isOverContainer = false;
 
@@ -1075,7 +972,6 @@
             cursorLabel.style.top = e.clientY + 'px';
         });
 
-        // --- Mouse drag ---
         container.addEventListener('mousedown', (e) => {
             isDragging = true;
             cube.classList.add('dragging');
@@ -1092,11 +988,9 @@
             const dx = e.clientX - prevX;
             const dy = e.clientY - prevY;
 
-            // Move the cube position
             offsetX = e.clientX - dragStartX;
             offsetY = e.clientY - dragStartY;
 
-            // Rotate based on movement
             rotateY += dx * 0.5;
             rotateX -= dy * 0.5;
             velocityX = -dy * 0.5;
@@ -1110,14 +1004,11 @@
             if (!isDragging) return;
             isDragging = false;
             cube.classList.remove('dragging');
-
-            // Snap back to original position with transition
             offsetX = 0;
             offsetY = 0;
             updateCube();
         });
 
-        // --- Touch drag ---
         container.addEventListener('touchstart', (e) => {
             isDragging = true;
             cube.classList.add('dragging');
@@ -1143,7 +1034,6 @@
             cube.classList.remove('dragging');
         });
 
-        // Scroll Animation Observer (Fades sections in as you scroll)
         const observerOptions = {
             root: null,
             rootMargin: '0px',
@@ -1154,7 +1044,7 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
-                    observer.unobserve(entry.target); // Stop observing once visible
+                    observer.unobserve(entry.target);
                 }
             });
         }, observerOptions);
@@ -1163,7 +1053,6 @@
             observer.observe(section);
         });
 
-        // Ensure hero is visible immediately
         setTimeout(() => {
             document.querySelector('#hero').classList.add('visible');
         }, 100);
